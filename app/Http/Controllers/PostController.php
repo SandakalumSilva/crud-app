@@ -30,7 +30,10 @@ class PostController extends Controller
     // Store a new post
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
 
         Post::create($request->all());
         return redirect()->route('posts.index');
